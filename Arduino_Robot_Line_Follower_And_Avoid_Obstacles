@@ -29,14 +29,14 @@ NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 void setup() {
  //Setup code here, to run once:
 Serial.begin(9600);
-pinMode(Enable_A, OUTPUT); // initialize Enable_A pin 12 as an output
-pinMode(Enable_B, OUTPUT); // initialize Enable_B pin 11 as an output
-pinMode(MOTOR_A1, OUTPUT); // initialize MOTOR_A1 pin 7 as an output
-pinMode(MOTOR_A2, OUTPUT); // initialize MOTOR_A2 pin 8 as an output
-pinMode(MOTOR_B1, OUTPUT); // initialize MOTOR_B1 pin 9 as an output
-pinMode(MOTOR_B2, OUTPUT); // initialize MOTOR_B2 pin 10 as an output
-pinMode(RIGHT, INPUT);     // initialize RIGHT pin A0 as an input
-pinMode(LEFT, INPUT);      // initialize LEFT pin A1 as an input
+pinMode(Enable_A, OUTPUT); // Enable_A pin 12 as an output
+pinMode(Enable_B, OUTPUT); // Enable_B pin 11 as an output
+pinMode(MOTOR_A1, OUTPUT); // MOTOR_A1 pin 7 as an output
+pinMode(MOTOR_A2, OUTPUT); // MOTOR_A2 pin 8 as an output
+pinMode(MOTOR_B1, OUTPUT); // MOTOR_B1 pin 9 as an output
+pinMode(MOTOR_B2, OUTPUT); // MOTOR_B2 pin 10 as an output
+pinMode(RIGHT, INPUT);     // RIGHT pin A0 as an input
+pinMode(LEFT, INPUT);      // LEFT pin A1 as an input
 
 
 }
@@ -59,20 +59,14 @@ if (distance == 0) {
 }
 if(distance <=15) {
   Stop();
-  delay(100);
-  turn_Right();
-  delay(350);
-  move_Forward();
-  delay(500);
-  turn_Left();
-  delay(350);
-  move_Forward();
-  delay(700);
-  turn_Left();
-  delay(300);
-  move_Forward();
-  delay(400);
-  turn_Right();
+  back(); back();
+  delay(100); turn_Right();
+  delay(350); move_Forward();
+  delay(500); turn_Left();
+  delay(350); move_Forward();
+  delay(700); turn_Left();
+  delay(300); move_Forward();
+  delay(400); turn_Right();
   delay(400);
 // Serial.print(" distance   ");
 // Serial.print(distance);
@@ -125,16 +119,14 @@ else if (analogRead(RIGHT)<=35 && analogRead(LEFT)<=35) {
 
 }
 void Stop() {
-  analogWrite(Enable_A, 0);
-  analogWrite(Enable_B, 0);
+  analogWrite(Enable_A, 0); analogWrite(Enable_B, 0);
   digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off
   digitalWrite(MOTOR_A2, LOW); // sets the digital pin 8 (MOTOR_A2) off
   digitalWrite(MOTOR_B1, LOW); // sets the digital pin 9 (MOTOR_B1) off
   digitalWrite(MOTOR_B2, LOW); // sets the digital pin 10 (MOTOR_B2) off 
 }
 void turn_Right() {
-  analogWrite(Enable_A, 100);
-  analogWrite(Enable_B, 100);
+  analogWrite(Enable_A, 100); analogWrite(Enable_B, 100);
   digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off 
   digitalWrite(MOTOR_A2, HIGH);// sets the digital pin 8 (MOTOR_A2) ON
   digitalWrite(MOTOR_B1, LOW); // sets the digital pin 9 (MOTOR_B1) off
@@ -143,8 +135,7 @@ void turn_Right() {
 }
 
 void turn_Left() {
-  analogWrite(Enable_A,100);
-  analogWrite(Enable_B, 100);
+  analogWrite(Enable_A,100); analogWrite(Enable_B, 100);
   digitalWrite(MOTOR_A1, HIGH);// sets the digital pin 7 (MOTOR_A1) ON
   digitalWrite(MOTOR_A2, LOW); // sets the digital pin 8 (MOTOR_A2) off
   digitalWrite(MOTOR_B1, HIGH);// sets the digital pin 9 (MOTOR_A1) ON
@@ -152,8 +143,7 @@ void turn_Left() {
 }
 
 void move_Forward() {
-  analogWrite(Enable_A, 100);
-  analogWrite(Enable_B, 100);
+  analogWrite(Enable_A, 100); analogWrite(Enable_B, 100);
   digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off 
   digitalWrite(MOTOR_A2, HIGH);// sets the digital pin 8 (MOTOR_A2) ON
   digitalWrite(MOTOR_B1, HIGH);// sets the digital pin 9 (MOTOR_A1) ON
