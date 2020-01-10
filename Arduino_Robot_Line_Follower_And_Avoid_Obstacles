@@ -52,7 +52,7 @@ void loop() {
   Serial.print(sonar.ping_cm());
   Serial.print("cm");
 
-delay(70);
+delay(80);
 int distance = sonar.ping_cm();
 if (distance == 0) {
   distance = 30;
@@ -60,14 +60,14 @@ if (distance == 0) {
 if(distance <=15) {
   Stop();
   back(); back();
-  delay(100); turn_Right();
+  delay(150); turn_Right();
+  delay(400); move_Forward();
+  delay(550); turn_Left();
+  delay(400); move_Forward();
+  delay(750); turn_Left();
   delay(350); move_Forward();
-  delay(500); turn_Left();
-  delay(350); move_Forward();
-  delay(700); turn_Left();
-  delay(300); move_Forward();
-  delay(400); turn_Right();
-  delay(400);
+  delay(450); turn_Right();
+  delay(450);
 // Serial.print(" distance   ");
 // Serial.print(distance);
  
@@ -76,7 +76,7 @@ if(distance <=15) {
 //Serial.print(" distance   ");
 //Serial.print(distance);
 
-//forword
+//The robot move forword
 if (analogRead(RIGHT)>=35 && analogRead(LEFT)>=35) {
   analogWrite(Enable_A, 100);
   analogWrite(Enable_B, 100);
@@ -87,7 +87,9 @@ if (analogRead(RIGHT)>=35 && analogRead(LEFT)>=35) {
 
   Serial.print(" going Forward  ");
   
-}else if (analogRead(RIGHT)<=35 && !analogRead(LEFT)<=35 ) {
+}
+//The robot moves in the right direction
+else if (analogRead(RIGHT)<=35 && !analogRead(LEFT)<=35 ) {
   analogWrite(Enable_A, 100);
   analogWrite(Enable_B, 100);
   digitalWrite(MOTOR_A1, HIGH); // sets the digital pin 7 (MOTOR_A1) ON
@@ -97,7 +99,9 @@ if (analogRead(RIGHT)>=35 && analogRead(LEFT)>=35) {
 
   Serial.print(" going right ");
 
-}else if (!analogRead(RIGHT)<=35 && analogRead(LEFT)<=35) {
+}
+//The robot moves in the left direction
+else if (!analogRead(RIGHT)<=35 && analogRead(LEFT)<=35) {
   analogWrite(Enable_A, 100);// Enable_A connected to digital pin 12
   analogWrite(Enable_B, 100);
   digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off
@@ -108,6 +112,7 @@ if (analogRead(RIGHT)>=35 && analogRead(LEFT)>=35) {
   Serial.print(" going to left ");
   
 }
+//If the both sensors reads a value <= 35 the robot will stop
 else if (analogRead(RIGHT)<=35 && analogRead(LEFT)<=35) {
  
   Stop();
