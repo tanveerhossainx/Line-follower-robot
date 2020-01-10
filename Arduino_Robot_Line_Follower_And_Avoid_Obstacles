@@ -118,12 +118,12 @@ else if (analogRead(RIGHT)<=35 && analogRead(LEFT)<=35) {
 
 
 }
-void Stop() {
-  analogWrite(Enable_A, 0); analogWrite(Enable_B, 0);
-  digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off
-  digitalWrite(MOTOR_A2, LOW); // sets the digital pin 8 (MOTOR_A2) off
-  digitalWrite(MOTOR_B1, LOW); // sets the digital pin 9 (MOTOR_B1) off
-  digitalWrite(MOTOR_B2, LOW); // sets the digital pin 10 (MOTOR_B2) off 
+void move_Forward() {
+  analogWrite(Enable_A, 100); analogWrite(Enable_B, 100);
+  digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off 
+  digitalWrite(MOTOR_A2, HIGH);// sets the digital pin 8 (MOTOR_A2) ON
+  digitalWrite(MOTOR_B1, HIGH);// sets the digital pin 9 (MOTOR_A1) ON
+  digitalWrite(MOTOR_B2, LOW); // sets the digital pin 10 (MOTOR_B2) off
 }
 void turn_Right() {
   analogWrite(Enable_A, 100); analogWrite(Enable_B, 100);
@@ -133,7 +133,6 @@ void turn_Right() {
   digitalWrite(MOTOR_B2, HIGH);// sets the digital pin 10 (MOTOR_B1) ON
   
 }
-
 void turn_Left() {
   analogWrite(Enable_A,100); analogWrite(Enable_B, 100);
   digitalWrite(MOTOR_A1, HIGH);// sets the digital pin 7 (MOTOR_A1) ON
@@ -141,11 +140,17 @@ void turn_Left() {
   digitalWrite(MOTOR_B1, HIGH);// sets the digital pin 9 (MOTOR_A1) ON
   digitalWrite(MOTOR_B2, LOW); // sets the digital pin 10 (MOTOR_B2) off
 }
-
-void move_Forward() {
-  analogWrite(Enable_A, 100); analogWrite(Enable_B, 100);
-  digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off 
-  digitalWrite(MOTOR_A2, HIGH);// sets the digital pin 8 (MOTOR_A2) ON
-  digitalWrite(MOTOR_B1, HIGH);// sets the digital pin 9 (MOTOR_A1) ON
-  digitalWrite(MOTOR_B2, LOW); // sets the digital pin 10 (MOTOR_B2) off
+void back() {
+  analogWrite(Enable_A, 100);  analogWrite(Enable_B, 100);
+  digitalWrite(MOTOR_A1, HIGH);// sets the digital pin 7 (MOTOR_A1) ON
+  digitalWrite(MOTOR_A2, LOW); // sets the digital pin 8 (MOTOR_A2) off
+  digitalWrite(MOTOR_B1, LOW); // sets the digital pin 9 (MOTOR_B1) off
+  digitalWrite(MOTOR_B2, HIGH);// sets the digital pin 10 (MOTOR_B2) ON
+}
+void Stop() {
+  analogWrite(Enable_A, 0); analogWrite(Enable_B, 0);
+  digitalWrite(MOTOR_A1, LOW); // sets the digital pin 7 (MOTOR_A1) off
+  digitalWrite(MOTOR_A2, LOW); // sets the digital pin 8 (MOTOR_A2) off
+  digitalWrite(MOTOR_B1, LOW); // sets the digital pin 9 (MOTOR_B1) off
+  digitalWrite(MOTOR_B2, LOW); // sets the digital pin 10 (MOTOR_B2) off 
 }
